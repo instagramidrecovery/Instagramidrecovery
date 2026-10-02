@@ -1,1 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Account Recovery Assistance</title>
 
+<style>
+*{box-sizing:border-box;font-family:Arial,sans-serif}
+
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  background:linear-gradient(135deg,#6a1b9a,#e91e63,#ff9800);
+}
+
+.card{
+  width:100%;
+  max-width:420px;
+  background:#fff;
+  border-radius:20px;
+  padding:28px;
+  text-align:center;
+  box-shadow:0 12px 35px #0004;
+}
+
+.logo{
+  width:75px;
+  height:75px;
+  margin:auto;
+  border-radius:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#7b1fa2,#e91e63,#ff9800);
+  color:white;
+  font-size:38px;
+}
+
+h1{font-size:25px;margin:15px 0 8px}
+p{color:#555;line-height:1.5}
+
+input,select{
+  width:100%;
+  padding:13px;
+  margin:7px 0;
+  border:1px solid #ddd;
+  border-radius:9px;
+  font-size:15px;
+}
+
+.price{
+  font-size:23px;
+  font-weight:bold;
+  margin:18px 0 10px;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:9px;
+  background:#0095f6;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.payment{
+  display:none;
+}
+
+.qr-placeholder{
+  margin:15px auto;
+  width:220px;
+  height:220px;
+  border:2px dashed #bbb;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#777;
+  padding:20px;
+}
+
+.success{
+  display:none;
+}
+
+.success h2{
+  font-size:26px;
+}
+
+.small{
+  font-size:12px;
+  color:#777;
+  margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- DETAILS PAGE -->
+<div class="card" id="detailsPage">
+
+  <div class="logo">↻</div>
+
+  <h1>Account Recovery Assistance</h1>
+
+  <p>Enter your details to submit a recovery assistance request.</p>
+
+  <input id="username"
+         type="text"
+         placeholder="Instagram ID / Username">
+
+  <input id="name"
+         type="text"
+         placeholder="Full Name">
+
+  <select id="gender">
+    <option value="">Select Gender</option>
+    <option>Male</option>
+    <option>Female</option>
+    <option>Other</option>
+    <option>Prefer not to say</option>
+  </select>
+
+  <input id="dob" type="date">
+
+  <input id="email"
+         type="email"
+         placeholder="Contact Email">
+
+  <input id="phone"
+         type="tel"
+         placeholder="Phone Number">
+
+  <div class="price">₹299</div>
+
+  <button onclick="showPayment()">
+    Verify & Continue
+  </button>
+
+  <div class="small">
+    Never enter your password, OTP or security code.
+  </div>
+
+</div>
+
+
+<!-- PAYMENT PAGE -->
+<div class="card payment" id="paymentPage">
+
+  <div class="logo">₹</div>
+
+  <h1>Secure Payment</h1>
+
+  <p>Pay ₹299 to submit your recovery assistance request.</p>
+
+  <div class="price">₹299</div>
+
+  <div class="qr-placeholder">
+    Your UPI QR Code will appear here
+  </div>
+
+  <button onclick="paymentSubmitted()">
+    I Have Paid ₹299
+  </button>
+
+  <p class="small">
+    Payment must be verified before processing the request.
+  </p>
+
+</div>
+
+
+<!-- SUCCESS PAGE -->
+<div class="card success" id="successPage">
+
+  <div class="logo">✓</div>
+
+  <h2>🎉 Congratulations!</h2>
+
+  <p><b>You are back on Instagram.</b></p>
+
+  <p>
+    Your recovery assistance request has been received successfully.
+  </p>
+
+</div>
+
+
+<script>
+
+function showPayment(){
+
+  const fields = [
+    "username",
+    "name",
+    "gender",
+    "dob",
+    "email",
+    "phone"
+  ];
+
+  for(const id of fields){
+
+    if(!document.getElementById(id).value){
+
+      alert("Please fill all details.");
+      return;
+
+    }
+  }
+
+  document.getElementById("detailsPage").style.display="none";
+  document.getElementById("paymentPage").style.display="block";
+}
+
+
+function paymentSubmitted(){
+
+  document.getElementById("paymentPage").style.display="none";
+  document.getElementById("successPage").style.display="block";
+
+}
+
+</script>
+
+</body>
+  </html>
